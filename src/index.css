@@ -1,0 +1,7 @@
+/* src/index.css */
+
+@import 'tailwindcss';
+
+body {
+  @apply bg-purple-900;
+}
