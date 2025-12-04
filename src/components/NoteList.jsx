@@ -1,6 +1,12 @@
 // src/components/NoteList.jsx
 
 const NoteList = ({ notes, deleteNote }) => {
+  const priorityColors = {
+    High: "red",
+    Medium: "orange",
+    Low: "green",
+  };
+
   return (
     <div className="space-y-4">
       {notes.length === 0 && (
@@ -11,6 +17,7 @@ const NoteList = ({ notes, deleteNote }) => {
         <div
           key={note.id}
           className="p-4 bg-white rounded-lg shadow-md border-l-4"
+          style={{ borderLeftColor: priorityColors[note.priority] }}
         >
           <h3 className="text-lg font-bold">{note.title}</h3>
 
