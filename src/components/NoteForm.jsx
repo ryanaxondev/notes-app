@@ -19,6 +19,7 @@ const NoteForm = () => {
 
   return (
     <form className="mb-6">
+      {/* Title */}
       <div className="mb-4">
         <label htmlFor="title" className="block font-semibold">
           Title
@@ -31,13 +32,14 @@ const NoteForm = () => {
           onChange={handleChange}
         />
       </div>
+
+      {/* Priority */}
       <div className="mb-4">
         <label htmlFor="priority" className="block font-semibold">
           Priority
         </label>
         <select
           name="priority"
-          type="text"
           className="w-full p-2 border rounded-lg"
           value={formData.priority}
           onChange={handleChange}
@@ -47,13 +49,14 @@ const NoteForm = () => {
           <option value="Low">🟢 Low</option>
         </select>
       </div>
+
+      {/* Category */}
       <div className="mb-4">
         <label htmlFor="category" className="block font-semibold">
           Category
         </label>
         <select
           name="category"
-          type="text"
           className="w-full p-2 border rounded-lg"
           value={formData.category}
           onChange={handleChange}
@@ -63,19 +66,22 @@ const NoteForm = () => {
           <option value="Ideas">💡 Ideas</option>
         </select>
       </div>
+
+      {/* Description */}
       <div className="mb-4">
         <label htmlFor="description" className="block font-semibold">
           Description
         </label>
         <textarea
           name="description"
-          type="text"
           className="w-full p-2 border rounded-lg"
           value={formData.description}
           onChange={handleChange}
         ></textarea>
       </div>
-      <button className="w-full bg-purple-500 text-white py-2 rounded-lg-cursor-pointer hover:bg-purple-600">
+
+      {/* Submit */}
+      <button className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600">
         Add Note
       </button>
     </form>
