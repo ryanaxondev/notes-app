@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const NoteForm = () => {
+const NoteForm = ({ notes, setNotes }) => {
   const [formData, setFormData] = useState({
     title: "",
     category: "Work",
@@ -10,6 +10,7 @@ const NoteForm = () => {
     description: "",
   });
 
+  // Update local form data
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,13 +18,34 @@ const NoteForm = () => {
     });
   };
 
+  // Handle submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.title || !formData.description) return;
+
+    const newNote = {
+      id: Date.now(),
+      ...formData,
+    };
+
+    // Add new note to global state (immutable)
+    setNotes([newNote, ...notes]);
+
+    // Reset form
+    setFormData({
+      title: "",
+      category: "Work",
+      priority: "Medium",
+      description: "",
+    });
+  };
+
   return (
-    <form className="mb-6">
+    <form onSubmit={handleSubmit} className="mb-6">
       {/* Title */}
       <div className="mb-4">
-        <label htmlFor="title" className="block font-semibold">
-          Title
-        </label>
+        <label className="block font-semibold">Title</label>
         <input
           name="title"
           type="text"
@@ -35,9 +57,7 @@ const NoteForm = () => {
 
       {/* Priority */}
       <div className="mb-4">
-        <label htmlFor="priority" className="block font-semibold">
-          Priority
-        </label>
+        <label className="block font-semibold">Priority</label>
         <select
           name="priority"
           className="w-full p-2 border rounded-lg"
@@ -52,9 +72,7 @@ const NoteForm = () => {
 
       {/* Category */}
       <div className="mb-4">
-        <label htmlFor="category" className="block font-semibold">
-          Category
-        </label>
+        <label className="block font-semibold">Category</label>
         <select
           name="category"
           className="w-full p-2 border rounded-lg"
@@ -69,9 +87,7 @@ const NoteForm = () => {
 
       {/* Description */}
       <div className="mb-4">
-        <label htmlFor="description" className="block font-semibold">
-          Description
-        </label>
+        <label className="block font-semibold">Description</label>
         <textarea
           name="description"
           className="w-full p-2 border rounded-lg"
@@ -81,7 +97,10 @@ const NoteForm = () => {
       </div>
 
       {/* Submit */}
-      <button className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600">
+      <button
+        type="submit"
+        className="w-full bg-purple-500 text-white cursor-pointer py-2 rounded-lg hover:bg-purple-600 transition"
+      >
         Add Note
       </button>
     </form>
