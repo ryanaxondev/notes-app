@@ -1,10 +1,19 @@
 // src/App.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
+  // Load initial notes from localStorage
+  const [notes, setNotes] = useState(() => {
+    const savedNotes = JSON.parse(localStorage.getItem("notes"));
+    return savedNotes || [];
+  });
+
+  // Save notes to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   // Handle deleting a note
   const deleteNote = (id) => {
