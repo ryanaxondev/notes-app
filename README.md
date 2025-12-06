@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="./assets/banner.webp" alt="Notes App Banner" width="100%" />
-</p>
-
 <h1 align="center">📘 Notes App</h1>
 
 <p align="center">
